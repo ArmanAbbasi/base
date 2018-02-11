@@ -1,0 +1,15 @@
+{
+  "ignore": [
+      "*.scss",
+      "/node_modules/"
+  ],
+  "presets": [
+    "env",
+    "react"
+  ],
+  "plugins": [
+    "transform-runtime",
+    "dynamic-import-node",
+    "transform-object-rest-spread"
+  ]
+}

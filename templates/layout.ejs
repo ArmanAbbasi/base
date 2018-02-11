@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include partials/head.ejs %>
+  </head>
+  <body>
+    <script>
+      var __initial__ = <%-JSON.stringify(data)%>;
+    </script>
+    <%- body %>
+  </body>
+</html>

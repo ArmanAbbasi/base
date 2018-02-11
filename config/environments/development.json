@@ -1,0 +1,5 @@
+{
+  "graphql": {
+    "url": "https://ecom-orchestration-api-production.k8s-production.photobox.com/graphql"
+  }
+}

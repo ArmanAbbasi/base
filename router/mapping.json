@@ -1,0 +1,20 @@
+{
+  "/": {
+    "canonical": "/",
+    "breadcrumbs": [
+      { "title": "Home", "href": "/" },
+      { "title": "Shop", "href": "/shop" },
+      { "title": "Personalised Mugs", "href": "/shop/personalised-mugs" }
+    ],
+    "locale": "en-gb",
+    "params": {
+      "analytics": {
+        "pageCategory": "Range",
+        "pageProductCategory": "Mugs"
+      },
+      "tag": "type-mug",
+      "component": "ProductListing",
+      "contentId": "blt008f6b6dc446636a"
+    }
+  }
+}
