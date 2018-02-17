@@ -1,8 +1,9 @@
 import fetch from 'node-fetch';
 import path from 'path';
 
-import config from '../config';
-import { logger } from '../utils';
+import config from '@config';
+
+import { logger } from '@utils';
 
 const fetchData = async ({ queryId, parameters }) => {
   const query = require(path.resolve(__dirname, './queries', queryId)).default;

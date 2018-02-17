@@ -10,6 +10,23 @@
   "plugins": [
     "transform-runtime",
     "dynamic-import-node",
-    "transform-object-rest-spread"
+    "transform-object-rest-spread",
+    ["module-alias", [{
+        "src": "./config",
+        "expose": "@config"
+      }, {
+        "src": "./utils",
+        "expose": "@utils"
+      }, {
+        "src": "./views",
+        "expose": "@views"
+      }, {
+        "src": "./router",
+        "expose": "@router"
+      }, {
+        "src": "./api",
+        "expose": "@api"
+      }
+    ]]
   ]
 }

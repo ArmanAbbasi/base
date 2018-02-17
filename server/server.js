@@ -2,10 +2,10 @@ import Koa from 'koa';
 import path from 'path';
 import ejs from 'koa-ejs';
 
-import config from '../config';
-import router from '../router';
+import config from '@config';
+import router from '@router';
 
-import { logger } from '../utils';
+import { logger } from '@utils';
 
 const app = new Koa();
 

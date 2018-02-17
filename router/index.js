@@ -1,9 +1,9 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 
-import viewResolver from './viewResolver';
+import fetchData from '@api';
 
-import fetchData from '../api';
+import viewResolver from './viewResolver';
 
 export default async ctx => {
   const { componentId, Instance, params } = await viewResolver(ctx);

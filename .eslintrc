@@ -50,6 +50,12 @@
     "react/jsx-filename-extension": 0,
     "react/jsx-curly-spacing": ["error", "always", {
       "allowMultiline": false
+    }],
+    "import/extensions": 0,
+    "import/no-unresolved": ["error", {
+      "ignore": [
+        "^@"
+      ]
     }]
   },
   "globals": {
