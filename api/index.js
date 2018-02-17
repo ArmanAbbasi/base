@@ -2,11 +2,12 @@ import fetch from 'node-fetch';
 import path from 'path';
 
 import config from '../config';
+import { logger } from '../utils';
 
 const fetchData = async ({ queryId, parameters }) => {
   const query = require(path.resolve(__dirname, './queries', queryId)).default;
 
-  return await fetch(config.get('graphql.url'), {
+  return fetch(config.get('graphql.url'), {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -16,11 +17,11 @@ const fetchData = async ({ queryId, parameters }) => {
     },
     body: JSON.stringify({
       query: query(parameters)
-    }),
+    })
   })
-  .then(res => res.json())
-  .then(res => res.data)
-  .catch(e => console.log(e))
+    .then(res => res.json())
+    .then(res => res.data)
+    .catch(e => logger.error('Failed orchestration call', e));
 };
 
 export default fetchData;

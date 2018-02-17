@@ -2,14 +2,18 @@ import React from 'react';
 import path from 'path';
 import assign from 'lodash/assign';
 
-import mapping from './mapping';
+import mapping from './mapping.json';
 
 export default async ctx => {
   const match = mapping[ctx.request.path];
 
   if (match) {
+    const { params } = match;
+
     return assign({ }, match, {
-      component: require(path.resolve(__dirname, '../views/', match.params.component)).default
+      componentId: params.component,
+      Instance: require(path.resolve(__dirname, '../views/', params.component)).default,
+      params
     });
   }
 

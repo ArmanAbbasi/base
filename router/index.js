@@ -6,15 +6,17 @@ import viewResolver from './viewResolver';
 import fetchData from '../api';
 
 export default async ctx => {
-  const View = await viewResolver(ctx);
+  const { componentId, Instance, params } = await viewResolver(ctx);
+  if (!Instance) { return; }
+
   const data = await fetchData({
-    queryId: View.params.component,
-    parameters: View.params
+    queryId: componentId,
+    parameters: params
   });
 
-  return ctx.render('layout', {
-    body: await renderToString(<View.component {...data} />),
+  await ctx.render('layout', {
+    body: await renderToString(<Instance { ...data } />),
     data,
     title: data.content.seo.title
   });
-}
+};
