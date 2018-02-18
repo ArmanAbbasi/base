@@ -9,7 +9,8 @@
   "scripts": {
     "start": "node server",
     "lint": "eslint --fix ./",
-    "precommit": "yarn lint && yarn test",
+    "precommit": "yarn lint",
+    "prepush": "yarn test",
     "test": "jest .test.js"
   },
   "dependencies": {
