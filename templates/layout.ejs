@@ -4,9 +4,11 @@
     <% include partials/head.ejs %>
   </head>
   <body>
-    <script>
-      var __initial__ = <%-JSON.stringify(data)%>;
-    </script>
+    <%if (typeof data != "undefined") { %>
+      <script>
+        var __initial__ = <%-JSON.stringify(data)%>;
+      </script>
+    <% } %>
     <%- body %>
   </body>
 </html>

@@ -1,22 +1,54 @@
 import React from 'react';
-import { renderToString } from 'react-dom/server';
-
 import fetchData from '@api';
 
-import viewResolver from './viewResolver';
+import { renderToString } from 'react-dom/server';
+import { dynamic, logger } from '@utils';
 
-export default async ctx => {
-  const { componentId, Instance, params } = await viewResolver(ctx);
-  if (!Instance) { return; }
+import { isPathAvailable } from './urlResolver';
+import { getView } from './viewResolver';
 
-  const data = await fetchData({
-    queryId: componentId,
-    parameters: params
-  });
+export default async (ctx, next) => {
+  try {
+    await next();
 
-  await ctx.render('layout', {
-    body: await renderToString(<Instance { ...data } />),
-    data,
-    title: data.content.seo.title
-  });
+    if (!isPathAvailable(ctx.request.path)) {
+      const NotFoundError = await dynamic('views/NotFound');
+
+      ctx.status = 404;
+
+      logger.error('Page Not Found', {
+        error: ctx.request
+      });
+
+      return ctx.render('layout', {
+        body: renderToString(<NotFoundError />),
+        title: 'Page Not Found'
+      });
+    }
+    const { componentId, View, params } = await getView(ctx);
+
+    const data = await fetchData({
+      queryId: componentId,
+      parameters: params
+    });
+
+    return ctx.render('layout', {
+      body: await renderToString(<View { ...data } />),
+      data,
+      title: data.content.seo.title
+    });
+  } catch (error) {
+    const ServerError = await dynamic('views/ServerError');
+
+    ctx.status = 500;
+
+    logger.error('Server Error', {
+      error
+    });
+
+    return ctx.render('layout', {
+      body: renderToString(<ServerError />),
+      title: 'Server Error'
+    });
+  }
 };

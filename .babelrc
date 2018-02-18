@@ -9,7 +9,6 @@
   ],
   "plugins": [
     "transform-runtime",
-    "dynamic-import-node",
     "transform-object-rest-spread",
     ["module-alias", [{
         "src": "./config",

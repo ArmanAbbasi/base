@@ -1,6 +1,7 @@
-import { createLogger, format, transports } from 'winston';
-
+import path from 'path';
 import config from '@config';
+
+import { createLogger, format, transports } from 'winston';
 
 const { combine, timestamp, printf } = format;
 
@@ -15,3 +16,5 @@ export const logger = createLogger({
     new transports.Console()
   ]
 });
+
+export const dynamic = (...args) => require(path.resolve(...args)).default;

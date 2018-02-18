@@ -1,24 +1,15 @@
-import React from 'react';
-import path from 'path';
 import assign from 'lodash/assign';
+import { dynamic } from '@utils';
 
-import mapping from './mapping.json';
+import { getPathObject } from './urlResolver';
 
-export default async ctx => {
-  const match = mapping[ctx.request.path];
+export const getView = async ctx => {
+  const match = getPathObject(ctx.request.path);
+  const { params } = match;
 
-  if (match) {
-    const { params } = match;
-
-    return assign({ }, match, {
-      componentId: params.component,
-      Instance: require(path.resolve(__dirname, '../views/', params.component)).default,
-      params
-    });
-  }
-
-  ctx.status = 404;
   return assign({ }, match, {
-    component: require(path.resolve(__dirname, '../views/', 'NotFound')).default
+    componentId: params.component,
+    View: await dynamic(`views/${ params.component }`),
+    params
   });
 };
