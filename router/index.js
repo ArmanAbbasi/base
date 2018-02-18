@@ -13,7 +13,7 @@ export default async (ctx, next) => {
     await next();
 
     if (!isPathAvailable(ctx.request.path)) {
-      const NotFoundError = await dynamic('views/NotFound');
+      const NotFoundError = await dynamic('views/NotFound2');
 
       ctx.status = 404;
 

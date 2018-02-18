@@ -25,6 +25,9 @@
       }, {
         "src": "./api",
         "expose": "@api"
+      }, {
+        "src": "./styling",
+        "expose": "styling"
       }
     ]]
   ]
