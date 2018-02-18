@@ -25,7 +25,7 @@ const caching = (cacheDuration = config.get('caching.duration')) => async (ctx, 
     cache_age: cacheDuration
   });
 
-  ctx.response.set('Cache-Control', `max-age=${cacheDuration}`);
+  ctx.response.set('Cache-Control', `max-age=${ cacheDuration }`);
   await next();
 };
 
