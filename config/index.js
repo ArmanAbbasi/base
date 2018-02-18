@@ -12,6 +12,9 @@ const config = assign({
     port: 3000,
     environment,
     hostname: 'localhost'
+  },
+  caching: {
+    duration: 120
   }
 }, envSpecificConfig);
 

@@ -20,12 +20,22 @@ ejs(app, {
   debug: false
 });
 
+const caching = (cacheDuration = config.get('caching.duration')) => async (ctx, next) => {
+  logger.info('Cache miss', {
+    cache_age: cacheDuration
+  });
+
+  ctx.response.set('Cache-Control', `max-age=${cacheDuration}`);
+  await next();
+};
+
 app
   .use(gzip())
   .use(serve('./public'))
   .use(minifier({
     collapseWhitespace: true
   }))
+  .use(caching())
   .use(router)
   .listen(config.get('server.port'), err => logger[err ? 'error' : 'info'](`NodeJS instance ${ err ? 'failed' : 'started' }`, {
     port: config.get('server.port'),
