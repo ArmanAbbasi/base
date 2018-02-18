@@ -20,6 +20,7 @@
     "koa": "^2.5.0",
     "koa-ejs": "^4.1.0",
     "koa-router": "^7.4.0",
+    "koa-static": "^4.0.2",
     "lodash": "^4.17.5",
     "node-fetch": "^2.0.0",
     "react": "^16.2.0",

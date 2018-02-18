@@ -1,6 +1,7 @@
 import Koa from 'koa';
 import path from 'path';
 import ejs from 'koa-ejs';
+import serve from 'koa-static';
 
 import config from '@config';
 import router from '@router';
@@ -18,6 +19,7 @@ ejs(app, {
 });
 
 app
+  .use(serve('./public'))
   .use(router)
   .listen(config.get('server.port'), err => logger[err ? 'error' : 'info'](`NodeJS instance ${ err ? 'failed' : 'started' }`, {
     port: config.get('server.port'),
