@@ -29,8 +29,8 @@ const caching = (cacheDuration = config.get('caching.edge.duration')) => async (
     'Cache-Control': `max-age=${ cacheDuration }`
   } : {
     'Cache-Control': 'private, no-cache, no-store, must-revalidate',
-    'Expires': '-1',
-    'Pragma': 'no-cache'
+    Expires: '-1',
+    Pragma: 'no-cache'
   });
 
   await next();
@@ -39,7 +39,7 @@ const caching = (cacheDuration = config.get('caching.edge.duration')) => async (
 app
   .use(compress())
   .use(serve('./public', {
-    setHeaders: (res) => {
+    setHeaders: res => {
       if (config.get('caching.static.enabled')) {
         res.setHeader('Cache-Control', `max-age=${ config.get('caching.static.duration') }`);
       } else {
@@ -47,7 +47,8 @@ app
         res.setHeader('Expires', '-1');
         res.setHeader('Pragma', 'no-cache');
       }
-  }}))
+    }
+  }))
   .use(minifier({
     collapseWhitespace: true
   }))
