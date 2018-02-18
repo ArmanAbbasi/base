@@ -2,7 +2,7 @@ import Koa from 'koa';
 import path from 'path';
 import ejs from 'koa-ejs';
 import serve from 'koa-static';
-import gzip from 'koa-gzip';
+import compress from 'koa-compress';
 import minifier from 'koa-html-minifier';
 
 import config from '@config';
@@ -30,7 +30,7 @@ const caching = (cacheDuration = config.get('caching.duration')) => async (ctx, 
 };
 
 app
-  .use(gzip())
+  .use(compress())
   .use(serve('./public'))
   .use(minifier({
     collapseWhitespace: true
