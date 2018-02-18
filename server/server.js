@@ -3,6 +3,7 @@ import path from 'path';
 import ejs from 'koa-ejs';
 import serve from 'koa-static';
 import gzip from 'koa-gzip';
+import minifier from 'koa-html-minifier';
 
 import config from '@config';
 import router from '@router';
@@ -22,6 +23,9 @@ ejs(app, {
 app
   .use(gzip())
   .use(serve('./public'))
+  .use(minifier({
+    collapseWhitespace: true
+  }))
   .use(router)
   .listen(config.get('server.port'), err => logger[err ? 'error' : 'info'](`NodeJS instance ${ err ? 'failed' : 'started' }`, {
     port: config.get('server.port'),
