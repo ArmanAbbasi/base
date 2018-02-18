@@ -31,7 +31,9 @@ const caching = (cacheDuration = config.get('caching.duration')) => async (ctx, 
 
 app
   .use(compress())
-  .use(serve('./public'))
+  .use(serve('./public', {
+    maxage: 30 * 24 * 60 * 60 * 1000
+  }))
   .use(minifier({
     collapseWhitespace: true
   }))
