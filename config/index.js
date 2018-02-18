@@ -1,8 +1,8 @@
 import get from 'lodash/get';
 import assign from 'lodash/assign';
 
-const env = process.env.NODE_ENV || 'development';
-const envSpecificConfig = require(`./environments/${ env }.json`);
+const environment = process.env.NODE_ENV || 'development';
+const envSpecificConfig = require(`./environments/${ environment }.json`);
 
 const config = assign({
   application: {
@@ -10,7 +10,7 @@ const config = assign({
   },
   server: {
     port: 3000,
-    environment: env,
+    environment,
     hostname: 'localhost'
   }
 }, envSpecificConfig);

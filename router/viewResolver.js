@@ -1,4 +1,5 @@
 import assign from 'lodash/assign';
+
 import { dynamic } from '@utils';
 
 import { getPathObject } from './urlResolver';

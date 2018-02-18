@@ -1,8 +1,9 @@
 import React from 'react';
 import fetchData from '@api';
 
-import { renderToString } from 'react-dom/server';
 import { dynamic, logger } from '@utils';
+
+import { renderToString } from 'react-dom/server';
 
 import { isPathAvailable } from './urlResolver';
 import { getView } from './viewResolver';
