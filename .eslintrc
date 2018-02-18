@@ -56,7 +56,8 @@
       "ignore": [
         "^@"
       ]
-    }]
+    }],
+    "quote-props": ["error", "always"]
   },
   "globals": {
   },
