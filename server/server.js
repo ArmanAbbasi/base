@@ -3,7 +3,7 @@ import path from 'path';
 import ejs from 'koa-ejs';
 import serve from 'koa-static';
 import compress from 'koa-compress';
-import minifier from 'koa-html-minifier';
+import minifier from 'koa-html-minifier2';
 
 import config from '@config';
 import router from '@router';

@@ -2380,7 +2380,7 @@ html-encoding-sniffer@^1.0.2:
   dependencies:
     whatwg-encoding "^1.0.1"
 
-html-minifier@*:
+html-minifier@^3.5.5:
   version "3.5.9"
   resolved "https://registry.yarnpkg.com/html-minifier/-/html-minifier-3.5.9.tgz#74424014b872598d4bb0e20ac420926ec61024b6"
   dependencies:
@@ -3265,11 +3265,11 @@ koa-ejs@^4.1.0:
     ejs "^2.5.6"
     mz "^2.6.0"
 
-koa-html-minifier@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/koa-html-minifier/-/koa-html-minifier-1.0.1.tgz#6838a0c2a6cfd58fa919f10fbefd746f2b1fd91e"
+koa-html-minifier2@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/koa-html-minifier2/-/koa-html-minifier2-1.0.7.tgz#a3bf85efee11057562248aadd4b26f583d60e506"
   dependencies:
-    html-minifier "*"
+    html-minifier "^3.5.5"
 
 koa-is-json@^1.0.0:
   version "1.0.0"
