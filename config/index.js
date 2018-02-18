@@ -14,7 +14,14 @@ const config = assign({
     hostname: 'localhost'
   },
   caching: {
-    duration: 120
+    edge: {
+      enabled: true,
+      duration: 120
+    },
+    static: {
+      enabled: true,
+      duration: 30 * 24 * 60 * 60 * 1000
+    }
   }
 }, envSpecificConfig);
 

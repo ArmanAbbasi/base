@@ -20,20 +20,34 @@ ejs(app, {
   debug: false
 });
 
-const caching = (cacheDuration = config.get('caching.duration')) => async (ctx, next) => {
+const caching = (cacheDuration = config.get('caching.edge.duration')) => async (ctx, next) => {
   logger.info('Cache miss', {
     cache_age: cacheDuration
   });
 
-  ctx.response.set('Cache-Control', `max-age=${ cacheDuration }`);
+  ctx.response.set(config.get('caching.edge.enabled') ? {
+    'Cache-Control': `max-age=${ cacheDuration }`
+  } : {
+    'Cache-Control': 'private, no-cache, no-store, must-revalidate',
+    'Expires': '-1',
+    'Pragma': 'no-cache'
+  });
+
   await next();
 };
 
 app
   .use(compress())
   .use(serve('./public', {
-    maxage: 30 * 24 * 60 * 60 * 1000
-  }))
+    setHeaders: (res) => {
+      if (config.get('caching.static.enabled')) {
+        res.setHeader('Cache-Control', `max-age=${ config.get('caching.static.duration') }`);
+      } else {
+        res.setHeader('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+        res.setHeader('Expires', '-1');
+        res.setHeader('Pragma', 'no-cache');
+      }
+  }}))
   .use(minifier({
     collapseWhitespace: true
   }))
