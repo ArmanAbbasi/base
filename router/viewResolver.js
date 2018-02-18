@@ -9,8 +9,8 @@ export const getView = async ctx => {
   const { params } = match;
 
   return assign({ }, match, {
-    componentId: params.component,
-    View: await dynamic(`views/${ params.component }`),
+    'componentId': params.component,
+    'View': await dynamic(`views/${ params.component }`),
     params
   });
 };
