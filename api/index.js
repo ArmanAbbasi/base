@@ -1,12 +1,15 @@
-import fetch from 'node-fetch';
+import axios from 'axios';
 import config from '@config';
+import get from 'lodash/get';
 
 import { logger, dynamic } from '@utils';
 
 const fetchData = async ({ queryId, parameters }) => {
   const query = await dynamic(`api/queries/${ queryId }`);
 
-  return fetch(config.get('graphql.url'), {
+
+  return axios({
+    'url': config.get('graphql.url'),
     'method': 'POST',
     'headers': {
       'Content-Type': 'application/json',
@@ -14,14 +17,13 @@ const fetchData = async ({ queryId, parameters }) => {
       'X-Group-Channel-Id': '1234',
       'X-Group-Brand': 'Photobox'
     },
-    'body': JSON.stringify({
+    'data': JSON.stringify({
       'query': query(parameters)
     })
   })
-    .then(res => res.json())
-    .then(res => res.data)
-    .catch(e => logger.error('Failed orchestration call', {
-      'error': e
+    .then(({ data }) => get(data, 'data', {}))
+    .catch(err => logger.error('Failed orchestration call', {
+      'error': err
     }));
 };
 
