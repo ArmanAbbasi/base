@@ -27,7 +27,6 @@ export default async (ctx, next) => {
       });
     }
     const { componentId, View, params } = await getView(ctx);
-
     const data = await fetchData({
       'queryId': componentId,
       'parameters': params
