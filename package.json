@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "babel-core": "^6.26.0",
+    "axios": "^0.17.1",
     "graphql": "^0.13.0",
     "graphql-tag": "^2.7.3",
     "koa": "^2.5.0",
@@ -26,12 +27,12 @@
     "koa-router": "^7.4.0",
     "koa-static": "^4.0.2",
     "lodash": "^4.17.5",
-    "node-fetch": "^2.0.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
     "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
     "winston": "^3.0.0-rc1"
   },
   "devDependencies": {
